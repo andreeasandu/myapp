@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe PagesController do
+  integrate_views
 
   describe "GET 'home'" do
     it "returns http success" do
@@ -9,11 +10,23 @@ describe PagesController do
     end
   end
 
+  it "should have the right title" do 
+    get 'home'
+    assert_select("title",
+                  "Ruby on Rails Tutorial Sample App | Home")
+  end
+
   describe "GET 'contact'" do
     it "returns http success" do
       get 'contact'
       response.should be_success
     end
+  end
+  
+  it "should have the right title" do 
+    get 'contact'
+    assert_select("title",
+                  "Ruby on Rails Tutorial Sample App | Contact")
   end
 
   describe "GET 'about'" do
@@ -21,5 +34,11 @@ describe PagesController do
       get 'about'
       response.should be_success
     end
+  end
+  
+  it "should have the right title" do 
+    get 'about'
+    assert_select("title",
+                  "Ruby on Rails Tutorial Sample App | About")
   end
 end
